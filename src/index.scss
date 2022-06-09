@@ -1,0 +1,9 @@
+$primary-color: #2f74c0;
+
+@function setTextColor($color) {
+	@if (lightness($color) > 60) {
+		@return rgb(36, 36, 36);
+	} @else {
+		@return aliceblue;
+	}
+}
