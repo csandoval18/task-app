@@ -1,5 +1,5 @@
-export interface ToDo {
+export interface Task {
 	id: number
-	toDo: string
+	taskInput: string
 	isDone: boolean
 }
