@@ -1,4 +1,11 @@
-@import '../index.scss';
+@import '../../index.scss';
+
+.inputfield-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 .task {
 	display: flex;
@@ -13,7 +20,7 @@
 		font-size: 25px;
 		border: none;
 		transition: 0.2s;
-		box-shadow: 2px 3px 2px 1px $shadow-color;
+		box-shadow: 2px 3px 2px 1px $contrast-color;
 
 		&:focus {
 			box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);
@@ -37,5 +44,11 @@
 		&:hover {
 			background-color: lighten($primary-color, 20%);
 		}
+	}
+}
+
+@media (max-width: 700px) {
+	.task-input {
+		width: 95%;
 	}
 }

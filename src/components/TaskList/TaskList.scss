@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+.tasklist {
+	display: flex;
+	width: 90%;
+	gap: 1rem;
+	padding-top: 1.5rem;
+
+	&-active,
+	&-complete {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: white;
+		padding: 20px 0 30px 0;
+		box-shadow: 5px 5px 10px $contrast-color;
+		border-radius: 20px;
+	}
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.scss'
-import InputField from './Components/InputField'
-import TaskList from './Components/TaskList'
+import InputField from './components/InputField/InputField'
+import TaskList from './components/TaskList/TaskList'
 import { Task } from './model'
 
 const App: React.FC = () => {
@@ -12,12 +12,12 @@ const App: React.FC = () => {
 		e.preventDefault()
 		if (task) {
 			if (tasks.length === 0) {
-				setTasks([...tasks, { id: 0, taskInput: task, isDone: false }])
+				setTasks([...tasks, { id: 0, text: task, isDone: false }])
+				setTask('')
 			} else {
-				setTasks([
-					...tasks,
-					{ id: tasks.length, taskInput: task, isDone: false },
-				])
+				let len = tasks.length
+				let nextID = tasks[len - 1].id + 1
+				setTasks([...tasks, { id: nextID, text: task, isDone: false }])
 				setTask('')
 			}
 			console.log('task: ' + task)
