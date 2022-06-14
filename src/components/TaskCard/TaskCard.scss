@@ -9,13 +9,18 @@
 
 .taskcard {
 	display: flex;
-	width: 90%;
+	width: 85%;
 	border-radius: 15px;
 	padding: 20px;
 	margin-top: 15px;
 	background-color: $contrast-color;
-	color: setTextColor($primary-color);
-	// box-shadow: 2px 2px 2px 2px setTextColor($primary-color);
+	color: white;
+	transition: 0.2s;
+
+	&:hover {
+		transform: scale(1.01);
+		background-color: lighten($contrast-color, 8%);
+	}
 
 	&-text {
 		flex: 1;
@@ -31,17 +36,13 @@
 	}
 
 	&-input {
+		flex: 1;
+		margin-right: 30px;
+		border-radius: 15px;
+		height: 40px;
+
+		&:focus {
+			outline: none;
+		}
 	}
 }
-
-// @media (max-width: 1200px) {
-// 	.taskcard {
-// 		width: 40%;
-// 	}
-// }
-
-// @media (max-width: 700px) {
-// 	.taskcard {
-// 		width: 100%;
-// 	}
-// }

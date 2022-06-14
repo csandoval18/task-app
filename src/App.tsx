@@ -7,6 +7,7 @@ import { Task } from './model'
 const App: React.FC = () => {
 	const [task, setTask] = useState<string>('')
 	const [tasks, setTasks] = useState<Task[]>([])
+	const [completedTasks, setCompletedTasks] = useState<Task[]>([])
 
 	const handleAdd = (e: React.FormEvent) => {
 		e.preventDefault()
@@ -29,7 +30,12 @@ const App: React.FC = () => {
 		<div className='App'>
 			<span className='App-heading'>Taskify</span>
 			<InputField task={task} setTask={setTask} handleAdd={handleAdd} />
-			<TaskList tasks={tasks} setTasks={setTasks} />
+			<TaskList
+				tasks={tasks}
+				setTasks={setTasks}
+				completedTasks={completedTasks}
+				setCompletedTasks={setCompletedTasks}
+			/>
 		</div>
 	)
 }

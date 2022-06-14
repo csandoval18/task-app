@@ -5,6 +5,15 @@
 	width: 90%;
 	gap: 1rem;
 	padding-top: 1.5rem;
+	min-height: 20rem;
+
+	&-active {
+		background-color: rgb(255, 64, 105);
+	}
+
+	&-complete {
+		background-color: rgb(108, 226, 196);
+	}
 
 	&-active,
 	&-complete {
@@ -12,9 +21,25 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background-color: white;
 		padding: 20px 0 30px 0;
 		box-shadow: 5px 5px 10px $contrast-color;
 		border-radius: 20px;
+
+		.heading {
+			font-size: 20px;
+		}
+	}
+}
+
+@media (max-width: 1100px) {
+	.tasklist {
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
+		&-active,
+		&-complete {
+			width: 90%;
+		}
 	}
 }

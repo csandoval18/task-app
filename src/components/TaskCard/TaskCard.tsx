@@ -9,23 +9,27 @@ type Props = {
 	task: Task
 	tasks: Task[]
 	setTasks: React.Dispatch<React.SetStateAction<Task[]>>
+	completedTasks: Task[]
+	setCompletedTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-const TaskCard = ({ task, tasks, setTasks }: Props) => {
+const TaskCard = ({
+	task,
+	tasks,
+	setTasks,
+	completedTasks,
+	setCompletedTasks,
+}: Props) => {
 	const [edit, setEdit] = useState<boolean>(false)
 	const [editTask, setEditTask] = useState<string>(task.text)
-
-	const handleDone = (id: number) => {
-		setTasks(
-			tasks.map((task) =>
-				task.id === id ? { ...task, isDone: !task.isDone } : task
-			)
-		)
-	}
 
 	//delete task card
 	const handleDelete = (id: number) => {
 		setTasks(tasks.filter((task) => task.id !== id))
+	}
+
+	const handleDeleteCompleted = (id: number) => {
+		setCompletedTasks(completedTasks.filter((task) => task.id !== id))
 	}
 
 	//update input of edited taskcard in Tasks array upon form submission
@@ -38,7 +42,35 @@ const TaskCard = ({ task, tasks, setTasks }: Props) => {
 		setEdit(false)
 	}
 
-	//add focus to text input
+	const handleDone = (id: number) => {
+		//search if completed task already exists in completed tasks array
+		console.log('passed id: ' + id)
+		let el = completedTasks.filter((task) => task.id === id)
+		//add checkmarked task to completed tasks container
+		console.log(el)
+		if (el.length === 0) {
+			setCompletedTasks([
+				...completedTasks,
+				/* id needs to be different in completedTasks array since tasks array auto increments task 
+        ids starting from 0. Once an active task is moved to completed tasks it would cause issues 
+        of id duplicates which would allow completed tasks to be duplicated infinetly if the checkmark
+        is clicked once again
+        */
+				{ id: task.id + Math.random(), text: task.text, isDone: !task.isDone },
+			])
+			//remove task finished from tasks array displayed in active tasks
+			handleDelete(id)
+		} else if (el[0].isDone === true) {
+			console.log('el isdone: ' + el[0].isDone)
+			handleDeleteCompleted(id)
+			setTasks([
+				...tasks,
+				{ id: task.id + Math.random(), text: task.text, isDone: false },
+			])
+		}
+	}
+
+	//add focus to text input once edit btn is clicked
 	const inputRef = useRef<HTMLInputElement>(null)
 	useEffect(() => {
 		inputRef.current?.focus()
